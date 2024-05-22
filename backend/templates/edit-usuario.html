@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Usuario</title>
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <p>{{ message }}</p>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <form action="/actualizar/{{ usuario.0 }}" method="POST">
+        <input type="text" name="username" placeholder="Username" value="{{ usuario.0 }}">
+        <input type="password" name="contrasena" placeholder="Contraseña" value="{{ usuario.1 }}">
+        <input type="text" name="tipo_usuario_id" placeholder="Tipo Usuario ID" value="{{ usuario.2 }}">
+        <input type="text" name="created_at" placeholder="Fecha Creación (YYYY-MM-DD HH:MM:SS)" value="{{ usuario.3 }}">
+        <input type="text" name="usuario_creador" placeholder="Usuario Creador" value="{{ usuario.4 }}">
+        <button type="submit">Guardar</button>
+    </form>
+</body>
+</html>

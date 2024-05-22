@@ -1,0 +1,11 @@
+Comandos: 
+
+pip install flask 
+
+pip install flask-mysqldb
+
+pip install dotenv
+
+Iniciar server: 
+
+python main.py

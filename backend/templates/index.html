@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios</title>
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <p>{{ message }}</p>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <form action="/añadir" method="POST">
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="contrasena" placeholder="Contraseña">
+        <input type="text" name="tipo_usuario_id" placeholder="Tipo Usuario ID">
+        <input type="text" name="created_at" placeholder="Fecha Creación (YYYY-MM-DD HH:MM:SS)">
+        <input type="text" name="usuario_creador" placeholder="Usuario Creador">
+        <button type="submit">Guardar</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Contraseña</th>
+                <th>Tipo Usuario ID</th>
+                <th>Fecha Creación</th>
+                <th>Usuario Creador</th>
+                <th>Operaciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for usuario in usuarios %}
+            <tr>
+                <td>{{ usuario.0 }}</td>
+                <td>{{ usuario.1 }}</td>
+                <td>{{ usuario.2 }}</td>
+                <td>{{ usuario.3 }}</td>
+                <td>{{ usuario.4 }}</td>
+                <td>
+                    <a href="/editar/{{ usuario.0 }}">Editar</a>
+                    <a href="/eliminar/{{ usuario.0 }}">Borrar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
